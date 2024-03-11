@@ -1,7 +1,11 @@
 ﻿namespace VoucherCalculator
 {
-    public class Class1
+    public class VoucherCalculator
     {
+        public double CalculateDiscount(double basePrice, string voucher)
+        {
+            throw new NotImplementedException();
+        }
 
     }
 }
