@@ -63,5 +63,20 @@ namespace VoucherCalculator.Tests
             // Assert
             Assert.Throws<ArgumentException>(act);
         }
+
+        [Fact]
+        public void CalculateDiscount_InvalidDiscountCode_ShouldThrowArgumentExceptionWithInvalidDiscountCode()
+        {
+            // Arrange
+            VoucherCalculator voucherCalculator = new VoucherCalculator();
+            string voucher = "a";
+            double basePrice = 100.0;
+
+            // Act
+            Action act = () => voucherCalculator.CalculateDiscount(basePrice, voucher);
+
+            // Assert
+            Assert.Throws<ArgumentException>(act);
+        }
     }
 }
