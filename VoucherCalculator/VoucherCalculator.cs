@@ -12,6 +12,11 @@
 
         public double CalculateDiscount(double basePrice, string voucher)
         {
+            if (string.IsNullOrEmpty(voucher))
+            {
+                return basePrice;
+            }
+
             if (vouchers.ContainsKey(voucher))
             {
                 return basePrice * (100.0 - vouchers[voucher])/100.0;
