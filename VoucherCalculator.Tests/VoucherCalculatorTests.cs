@@ -48,5 +48,20 @@ namespace VoucherCalculator.Tests
             // Assert
             Assert.Equal(basePrice * 0.8, result);
         }
+
+        [Fact]
+        public void CalculateDiscount_PriceLessThanZero_ShouldThrowArgumentExceptionWithNegativesNotAllowed()
+        {
+            // Arrange
+            VoucherCalculator voucherCalculator = new VoucherCalculator();
+            string voucher = "a";
+            double basePrice = -1.0;
+
+            // Act
+            Action act = () => voucherCalculator.CalculateDiscount(basePrice, voucher);
+
+            // Assert
+            Assert.Throws<ArgumentException>(act);
+        }
     }
 }

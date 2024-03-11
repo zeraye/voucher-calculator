@@ -13,6 +13,11 @@
 
         public double CalculateDiscount(double basePrice, string voucher)
         {
+            if (basePrice < 0)
+            {
+                throw new ArgumentException("Negatives not allowed");
+            }
+
             if (string.IsNullOrEmpty(voucher))
             {
                 return basePrice;
