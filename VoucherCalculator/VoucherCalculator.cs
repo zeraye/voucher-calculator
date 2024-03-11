@@ -26,9 +26,9 @@
                 return basePrice;
             }
 
-            if (vouchers.ContainsKey(voucher))
+            if (vouchers.TryGetValue(voucher, out decimal value))
             {
-                return basePrice * (100m - vouchers[voucher])/100m;
+                return basePrice * (100m - value) /100m;
             }
 
             throw new ArgumentException("Invalid discount code");
