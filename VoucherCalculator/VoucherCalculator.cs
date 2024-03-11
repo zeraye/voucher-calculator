@@ -2,19 +2,19 @@
 {
     public class VoucherCalculator
     {
-        private Dictionary<string, double> vouchers;
+        private Dictionary<string, decimal> vouchers;
 
         public VoucherCalculator()
         {
-            vouchers = new Dictionary<string, double>();
+            vouchers = new Dictionary<string, decimal>();
         }
 
-        public void AddVoucher(string voucher, double discount)
+        public void AddVoucher(string voucher, decimal discount)
         {
             vouchers[voucher] = discount;
         }
 
-        public double CalculateDiscount(double basePrice, string voucher)
+        public decimal CalculateDiscount(decimal basePrice, string voucher)
         {
             if (basePrice < 0)
             {
@@ -28,7 +28,7 @@
 
             if (vouchers.ContainsKey(voucher))
             {
-                return basePrice * (100.0 - vouchers[voucher])/100.0;
+                return basePrice * (100m - vouchers[voucher])/100m;
             }
 
             throw new ArgumentException("Invalid discount code");

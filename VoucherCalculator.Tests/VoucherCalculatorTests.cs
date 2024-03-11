@@ -6,8 +6,8 @@ namespace VoucherCalculator.Tests
         public VoucherCalculatorTests()
         {
             sut = new VoucherCalculator();
-            sut.AddVoucher("SAVE10NOW", 10.0);
-            sut.AddVoucher("DISCOUNT20OFF", 20.0);
+            sut.AddVoucher("SAVE10NOW", 10m);
+            sut.AddVoucher("DISCOUNT20OFF", 20m);
         }
 
         [Fact]
@@ -15,7 +15,7 @@ namespace VoucherCalculator.Tests
         {
             // Arrange
             string voucher = string.Empty;
-            double basePrice = 100.0;
+            decimal basePrice = 100m;
 
             // Act
             var result = sut.CalculateDiscount(basePrice, voucher);
@@ -29,13 +29,13 @@ namespace VoucherCalculator.Tests
         {
             // Arrange
             string voucher = "SAVE10NOW";
-            double basePrice = 100.0;
+            decimal basePrice = 100m;
 
             // Act
             var result = sut.CalculateDiscount(basePrice, voucher);
 
             // Assert
-            Assert.Equal(basePrice * 0.9, result);
+            Assert.Equal(basePrice * 0.9m, result);
         }
 
         [Fact]
@@ -43,13 +43,13 @@ namespace VoucherCalculator.Tests
         {
             // Arrange
             string voucher = "DISCOUNT20OFF";
-            double basePrice = 100.0;
+            decimal basePrice = 100m;
 
             // Act
             var result = sut.CalculateDiscount(basePrice, voucher);
 
             // Assert
-            Assert.Equal(basePrice * 0.8, result);
+            Assert.Equal(basePrice * 0.8m, result);
         }
 
         [Fact]
@@ -57,7 +57,7 @@ namespace VoucherCalculator.Tests
         {
             // Arrange
             string voucher = "a";
-            double basePrice = -1.0;
+            decimal basePrice = -1m;
 
             // Act
             Action act = () => sut.CalculateDiscount(basePrice, voucher);
@@ -71,7 +71,7 @@ namespace VoucherCalculator.Tests
         {
             // Arrange
             string voucher = "a";
-            double basePrice = 100.0;
+            decimal basePrice = 100m;
 
             // Act
             Action act = () => sut.CalculateDiscount(basePrice, voucher);
