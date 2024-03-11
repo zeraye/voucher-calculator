@@ -2,6 +2,8 @@ namespace VoucherCalculator.Tests
 {
     public class VoucherCalculatorTests
     {
+        public VoucherCalculatorTests() { }
+
         [Fact]
         public void CalculateDiscount_EmptyVoucher_ShouldReturnBasePrice()
         {
