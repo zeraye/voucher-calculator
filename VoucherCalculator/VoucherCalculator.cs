@@ -7,8 +7,11 @@
         public VoucherCalculator()
         {
             vouchers = new Dictionary<string, double>();
-            vouchers["SAVE10NOW"] = 10.0;
-            vouchers["DISCOUNT20OFF"] = 20.0;
+        }
+
+        public void AddVoucher(string voucher, double discount)
+        {
+            vouchers[voucher] = discount;
         }
 
         public double CalculateDiscount(double basePrice, string voucher)

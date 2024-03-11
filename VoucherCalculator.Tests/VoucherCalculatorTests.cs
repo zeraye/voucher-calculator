@@ -2,18 +2,23 @@ namespace VoucherCalculator.Tests
 {
     public class VoucherCalculatorTests
     {
-        public VoucherCalculatorTests() { }
+        private readonly VoucherCalculator sut;
+        public VoucherCalculatorTests()
+        {
+            sut = new VoucherCalculator();
+            sut.AddVoucher("SAVE10NOW", 10.0);
+            sut.AddVoucher("DISCOUNT20OFF", 20.0);
+        }
 
         [Fact]
         public void CalculateDiscount_EmptyVoucher_ShouldReturnBasePrice()
         {
             // Arrange
-            VoucherCalculator voucherCalculator = new VoucherCalculator();
             string voucher = string.Empty;
             double basePrice = 100.0;
 
             // Act
-            var result = voucherCalculator.CalculateDiscount(basePrice, voucher);
+            var result = sut.CalculateDiscount(basePrice, voucher);
 
             // Assert
             Assert.Equal(basePrice, result);
@@ -23,12 +28,11 @@ namespace VoucherCalculator.Tests
         public void CalculateDiscount_ValidTokenFor10percentDiscount_ShouldReturnPrice10PercentLower()
         {
             // Arrange
-            VoucherCalculator voucherCalculator = new VoucherCalculator();
             string voucher = "SAVE10NOW";
             double basePrice = 100.0;
 
             // Act
-            var result = voucherCalculator.CalculateDiscount(basePrice, voucher);
+            var result = sut.CalculateDiscount(basePrice, voucher);
 
             // Assert
             Assert.Equal(basePrice * 0.9, result);
@@ -38,12 +42,11 @@ namespace VoucherCalculator.Tests
         public void CalculateDiscount_ValidTokenFor20percentDiscount_ShouldReturnPrice20PercentLower()
         {
             // Arrange
-            VoucherCalculator voucherCalculator = new VoucherCalculator();
             string voucher = "DISCOUNT20OFF";
             double basePrice = 100.0;
 
             // Act
-            var result = voucherCalculator.CalculateDiscount(basePrice, voucher);
+            var result = sut.CalculateDiscount(basePrice, voucher);
 
             // Assert
             Assert.Equal(basePrice * 0.8, result);
@@ -53,12 +56,11 @@ namespace VoucherCalculator.Tests
         public void CalculateDiscount_PriceLessThanZero_ShouldThrowArgumentExceptionWithNegativesNotAllowed()
         {
             // Arrange
-            VoucherCalculator voucherCalculator = new VoucherCalculator();
             string voucher = "a";
             double basePrice = -1.0;
 
             // Act
-            Action act = () => voucherCalculator.CalculateDiscount(basePrice, voucher);
+            Action act = () => sut.CalculateDiscount(basePrice, voucher);
 
             // Assert
             Assert.Throws<ArgumentException>(act);
@@ -68,12 +70,11 @@ namespace VoucherCalculator.Tests
         public void CalculateDiscount_InvalidDiscountCode_ShouldThrowArgumentExceptionWithInvalidDiscountCode()
         {
             // Arrange
-            VoucherCalculator voucherCalculator = new VoucherCalculator();
             string voucher = "a";
             double basePrice = 100.0;
 
             // Act
-            Action act = () => voucherCalculator.CalculateDiscount(basePrice, voucher);
+            Action act = () => sut.CalculateDiscount(basePrice, voucher);
 
             // Assert
             Assert.Throws<ArgumentException>(act);
