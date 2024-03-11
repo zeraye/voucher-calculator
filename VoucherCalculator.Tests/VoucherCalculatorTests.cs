@@ -16,5 +16,20 @@ namespace VoucherCalculator.Tests
             // Assert
             Assert.Equal(basePrice * 0.9, result);
         }
+
+        [Fact]
+        public void CalculateDiscount_EmptyVoucher_ShouldReturnBasePrice()
+        {
+            // Arrange
+            VoucherCalculator voucherCalculator = new VoucherCalculator();
+            string voucher = string.Empty;
+            double basePrice = 100.0;
+
+            // Act
+            var result = voucherCalculator.CalculateDiscount(basePrice, voucher);
+
+            // Assert
+            Assert.Equal(basePrice, result);
+        }
     }
 }
